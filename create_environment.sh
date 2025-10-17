@@ -3,38 +3,38 @@
 # Create Environment Setup Script for Submission Reminder App
 # This script sets up the directory structure and files for the application
 
-# Prompt user for their name
-read -p "Enter your name: " user_name
+# Allows user to enter his/her name
+read -p "Enter you name: " user_name
 
-# Create main application directory
-app_dir="submission_reminder_${user_name}"
+# Creation of  main application directory
+main_app_dir="submission_reminder_${user_name}"
 
-# Check if directory already exists
-if [ -d "$app_dir" ]; then
-    echo "Directory $app_dir already exists. Exiting..."
+# to verify if directory already exists
+if [ -d "$main_app_dir" ]; then
+    echo "Directory $main_app_dir already exists. Exiting..."
     exit 1
 fi
 
-# Create the main directory
-mkdir -p "$app_dir"
-echo "Created directory: $app_dir"
+# if it don't exist it will Create it (main directory)
+mkdir -p "$main_app_dir"
+echo "Created directory: $main_app_dir"
 
-# Create subdirectories
-mkdir -p "$app_dir/config"
-mkdir -p "$app_dir/modules"
-mkdir -p "$app_dir/assets"
-echo "Created subdirectories: config, modules, assets"
+# it will Create subdirectories
+mkdir -p "$main_app_dir/config"
+mkdir -p "$main_app_dir/modules"
+mkdir -p "$main_app_dir/assets"
+echo "config, modules and assets has been Created."
 
 # Create config.env file
-cat > "$app_dir/config/config.env" << 'EOF'
+cat > "$main_app_dir/config/config.env" << 'EOF'
 # This is the config file
 ASSIGNMENT="Shell Navigation"
 DAYS_REMAINING=2
 EOF
-echo "Created config.env"
+echo "config.env has been created"
 
 # Create functions.sh file
-cat > "$app_dir/modules/functions.sh" << 'EOF'
+cat > "$main_app_dir/modules/functions.sh" << 'EOF'
 #!/bin/bash
 
 # Function to read submissions file and output students who have not submitted
@@ -59,7 +59,7 @@ EOF
 echo "Created functions.sh"
 
 # Create reminder.sh file
-cat > "$app_dir/modules/reminder.sh" << 'EOF'
+cat > "$main_app_dir/modules/reminder.sh" << 'EOF'
 #!/bin/bash
 
 # Source environment variables and helper functions
@@ -79,31 +79,31 @@ EOF
 echo "Created reminder.sh"
 
 # Create submissions.txt file with at least 5 additional student records
-cat > "$app_dir/assets/submissions.txt" << 'EOF'
+cat > "$main_app_dir/assets/submissions.txt" << 'EOF'
 student, assignment, submission status
 Chinemerem, Shell Navigation, not submitted
 Chiagoziem, Git, submitted
 Divine, Shell Navigation, not submitted
 Anissa, Shell Basics, submitted
-David, Shell Navigation, not submitted
-Grace, Shell Basics, not submitted
-Samuel, Git, submitted
-Amara, Shell Navigation, not submitted
-Kwame, Shell Basics, not submitted
-Zainab, Git, not submitted
+Mukama, Shell Navigation, not submitted
+Mukesha, Shell Basics, not submitted
+Jackson, Git, submitted
+Amanda, Shell Navigation, not submitted
+George, Shell Basics, not submitted
+Mugabe, Git, not submitted
 EOF
 echo "Created submissions.txt with 10 student records"
 
 # Create startup.sh file
-cat > "$app_dir/startup.sh" << 'EOF'
+cat > "$main_app_dir/startup.sh" << 'EOF'
 #!/bin/bash
 
 # Startup Script for Submission Reminder App
 # This script initializes and runs the reminder application
 
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Starting Submission Reminder Application..."
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 
 # Navigate to the app directory
@@ -113,24 +113,24 @@ cd "$(dirname "$0")" || exit 1
 source ./modules/reminder.sh
 
 echo ""
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Application execution completed!"
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 EOF
 echo "Created startup.sh"
 
 # Make all .sh files executable
-chmod +x "$app_dir/startup.sh"
-chmod +x "$app_dir/modules/reminder.sh"
-chmod +x "$app_dir/modules/functions.sh"
+chmod +x "$main_app_dir/startup.sh"
+chmod +x "$main_app_dir/modules/reminder.sh"
+chmod +x "$main_app_dir/modules/functions.sh"
 echo "Set execute permissions on all .sh files"
 
 echo ""
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Environment setup completed successfully!"
-echo "Directory structure created: $app_dir"
-echo "=========================================="
+echo "Directory structure created: $main_app_dir"
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 echo "To test the application, run:"
-echo "cd $app_dir"
+echo "cd $main_app_dir"
 echo "./startup.sh"

@@ -3,30 +3,30 @@
 # Copilot Shell Script for Submission Reminder App
 # This script allows users to update the assignment name in config.env
 
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Submission Reminder App - Copilot"
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 
 # Prompt user for the app directory name
 read -p "Enter your submission reminder app directory name (e.g., submission_reminder_yourname): " app_dir
 
 # Check if directory exists
-if [ ! -d "$app_dir" ]; then
-    echo "Error: Directory $app_dir does not exist!"
+if [ ! -d "$main_app_dir" ]; then
+    echo "Error: Directory $main_app_dir does not exist!"
     exit 1
 fi
 
 # Check if config.env exists
-if [ ! -f "$app_dir/config/config.env" ]; then
-    echo "Error: config.env file not found in $app_dir/config/"
+if [ ! -f "$main_app_dir/config/config.env" ]; then
+    echo "Error: config.env file not found in $main_app_dir/config/"
     exit 1
 fi
 
 # Display current assignment
 echo ""
 echo "Current configuration:"
-cat "$app_dir/config/config.env"
+cat "$main_app_dir/config/config.env"
 echo ""
 
 # Prompt user for new assignment name
@@ -40,27 +40,27 @@ fi
 
 # Update the ASSIGNMENT value in config.env using sed
 # This replaces the ASSIGNMENT line with the new value
-sed -i "s/^ASSIGNMENT=.*/ASSIGNMENT=\"$new_assignment\"/" "$app_dir/config/config.env"
+sed -i "s/^ASSIGNMENT=.*/ASSIGNMENT=\"$new_assignment\"/" "$main_app_dir/config/config.env"
 
 echo ""
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Assignment updated successfully!"
-echo "=========================================="
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "New configuration:"
-cat "$app_dir/config/config.env"
+cat "$main_app_dir/config/config.env"
 echo ""
 
 # Ask if user wants to run the application immediately
-read -p "Do you want to run the application now? (yes/no): " run_app
+read -p "Do you want to run the application now? (y/n): " run_code
 
-if [ "$run_app" == "yes" ] || [ "$run_app" == "y" ]; then
+if [ "$run_code" == "yes" ] || [ "$run_code" == "y" ]; then
     echo ""
     echo "Running application..."
     echo ""
-    cd "$app_dir" || exit 1
+    cd "$main_app_dir" || exit 1
     ./startup.sh
 else
     echo "To run the application later, execute:"
-    echo "cd $app_dir"
+    echo "cd $main_app_dir"
     echo "./startup.sh"
 fi
