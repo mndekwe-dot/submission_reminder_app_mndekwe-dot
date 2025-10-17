@@ -6,12 +6,6 @@ A shell script-based application that helps track and remind students about pend
 
 This application automates the process of checking student submission statuses and sends reminders to students who haven't submitted their assignments. It uses a flexible configuration system that allows easy updates to assignment names and tracking multiple students across different assignments.
 
-## Prerequisites
-
-- Linux/Unix environment or macOS
-- Bash shell (version 4.0 or higher)
-- Git (for version control)
-
 ## Installation & Setup
 
 ### Step 1: Run the Setup Script
@@ -38,47 +32,6 @@ Navigate to the created directory and run the startup script:
 cd submission_reminder_{yourName}
 ./startup.sh
 ```
-
-## Usage
-
-### Running the Application
-
-To execute the reminder application:
-
-```bash
-cd submission_reminder_{yourName}
-./startup.sh
-```
-
-This will display:
-- Current assignment name
-- Days remaining to submit
-- List of students who have NOT submitted the assignment
-
-### Updating the Assignment
-
-To change the assignment being tracked:
-
-```bash
-./copilot_shell_script.sh
-```
-
-The script will:
-1. Ask for your app directory name
-2. Show the current configuration
-3. Prompt you to enter a new assignment name
-4. Update the config file automatically
-5. Optionally run the application to show students who haven't submitted the new assignment
-
-Example:
-```bash
-$ ./copilot_shell_script.sh
-Enter your submission reminder app directory name: submission_reminder_john
-Enter the new assignment name: Git Basics
-Assignment updated successfully!
-Do you want to run the application now? (yes/no): yes
-```
-
 ## Directory Structure
 
 After running `create_environment.sh`, the following structure is created:
@@ -86,54 +39,20 @@ After running `create_environment.sh`, the following structure is created:
 ```
 submission_reminder_{yourName}/
 ├── config/
-│   └── config.env           # Configuration file (assignment name, days remaining)
+│   └── config.env           
 ├── modules/
-│   ├── functions.sh         # Helper functions for checking submissions
-│   └── reminder.sh          # Main reminder logic
+│   ├── functions.sh         
+│   └── reminder.sh          
 ├── assets/
-│   └── submissions.txt      # Student submission records (CSV format)
-└── startup.sh              # Application startup script
+│   └── submissions.txt      
+└── startup.sh              
 ```
 
 ## File Descriptions
 
-### config.env
-Configuration file containing:
-- `ASSIGNMENT`: Current assignment name being tracked
-- `DAYS_REMAINING`: Number of days left for submission
-
-### functions.sh
-Contains helper functions:
-- `check_submissions()`: Reads the submissions file and outputs students who haven't submitted
-
-### reminder.sh
-Main application script that:
-- Sources configuration and helper functions
-- Displays assignment details
-- Calls the submission checking function
-
-### submissions.txt
-CSV file with student submission records. Format:
-```
-student, assignment, submission status
-StudentName, AssignmentName, submitted/not submitted
-```
-
 ### startup.sh
 Entry point that executes the reminder application
 
-## Data Format
-
-The `submissions.txt` file uses CSV format:
-
-```
-student, assignment, submission status
-Chinemerem, Shell Navigation, not submitted
-Chiagoziem, Git, submitted
-Divine, Shell Navigation, not submitted
-```
-
-To add more students, simply add new lines following this format.
 
 ## Customization
 
@@ -253,10 +172,3 @@ Days remaining to submit: 2 days
 Reminder: Chiagoziem has not submitted the Git assignment!
 ```
 
-## Author
-
-Created as part of a Linux shell scripting assignment.
-
-## License
-
-This project is open source and available under the MIT License.
